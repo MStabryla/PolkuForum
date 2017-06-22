@@ -1,0 +1,128 @@
+﻿@model CreateComment
+
+@using (Html.BeginForm("AddComment","Discussion",FormMethod.Post,htmlAttributes: new { id = "Dis-AddComment" }))
+{
+    <span class="dis-add-com-head">Dodaj komentarz</span>
+    <div>
+        @Html.TextAreaFor(x => x.Content)
+    </div>
+    <div class="dis-add-com-side">
+        <div class="dis-add-com-side-true">
+            TAK
+            @Html.RadioButtonFor(x => x.Side, "true")
+        </div>
+        <div class="dis-add-com-side-false">
+            NIE
+            @Html.RadioButtonFor(x => x.Side,"false")
+        </div>
+    </div>
+    <input type="hidden" name="PostID" value="@ViewData["disID"]"/>
+    <input type="submit" value="Skomentuj"/>
+    <span class="dis-add-com-message">Ups... twój komentarz został zweryfikowany jako niespełniający wymogów forum.<br/> Sprawdź swoją wypowiedź i popraw błędy</span>
+    <div id="From-Api-Dis-Add"></div>
+}
+<script>
+    console.log("tester");
+        $(".dis-add-com-side-true")[0].onclick = function(){
+            var innerradio = $(".dis-add-com-side-true input")[0];
+            if (innerradio.getAttribute("cheched"))
+            {
+                $(this).css("background-color", "rgba(0, 255, 18, 0.50)");
+                innerradio.removeAttribute("cheched");
+                $($(".dis-add-com-side-false")[0]).css("background-color", "#cc3333");
+                $(".dis-add-com-side-false input")[0].checked = true;
+                console.log($("#Dis-AddComment").serialize());
+            }
+            else
+            {
+                $(this).css("background-color", "#00ff12");
+                innerradio.checked = true;
+                $($(".dis-add-com-side-false")[0]).css("background-color", "rgba(204, 51, 51, 0.50)");
+                $(".dis-add-com-side-false input")[0].removeAttribute("cheched");
+                console.log($("#Dis-AddComment").serialize());
+            }
+            
+        }
+        $(".dis-add-com-side-false")[0].onclick = function(){
+            var innerradio = $(".dis-add-com-side-false input")[0];
+            if (innerradio.getAttribute("cheched")) {
+                $(this).css("background-color", "rgba(204, 51, 51, 0.50)");
+                innerradio.removeAttribute("cheched");
+                $($(".dis-add-com-side-true")[0]).css("background-color", "#00ff12");
+                $(".dis-add-com-side-true input")[0].checked = true;
+                console.log($("#Dis-AddComment").serialize());
+            }
+            else {
+                $(this).css("background-color", "#cc3333");
+                innerradio.checked = true;
+                $($(".dis-add-com-side-true")[0]).css("background-color", "rgba(0, 255, 18, 0.50)");
+                $(".dis-add-com-side-true input")[0].removeAttribute("cheched");
+                console.log($("#Dis-AddComment").serialize());
+            }
+        }
+        function Response(data, elem) {
+            var html = data.Message;
+            var actualelem;
+            var actualword;
+            for (var i = 0; i < data.Message.length; i++) {
+                if (actualelem) {
+                    actualelem.innerHTML += html[i];
+                    if (actualword.EndIndex <= i) {
+                        elem.appendChild(actualelem);
+                        actualelem = null;
+                        actualword = null;
+                    }
+                }
+                else {
+                    actualword = data.Words[data.Words.findIndex(function (elem) {
+                        return i == elem.StartIndex;
+                    })];
+                    console.log(actualword);
+                    if (actualword) {
+                        actualelem = document.createElement("span");
+                        actualelem.setAttribute("class", "regex");
+                        var innerelem = document.createElement("span");
+                        innerelem.setAttribute("class", "regex-mess");
+                        innerelem.innerHTML = actualword.Communicate;
+                        actualelem.appendChild(innerelem);
+                        actualelem.innerHTML += html[i];
+                    }
+                    else {
+                        elem.innerHTML += html[i];
+                    }
+                }
+            }
+        }
+        $("#Dis-AddComment").on("submit", function (e) {
+            e.preventDefault();
+            var obj = $(this).serialize();
+            $("#From-Api-Dis-Add").empty();
+            $.ajax({
+                url: "@Url.Action("AddComment","Discussion")",
+                method: "POST",
+                data:obj,
+                success: function (data) {
+                    data.response = JSON.parse(data.response);
+                    console.log(data);
+                    if(data.success)
+                    {
+                        location.reload();
+                    }
+                    else if (data.error == "NotPassed") {
+                        Response(data.response, $("#From-Api-Dis-Add")[0]);
+                        $("#From-Api-Dis-Add").fadeIn(1000, function () {
+                            $(this).css("display", "block");
+                        })
+                        $(".dis-add-com-message").css("display", "inline-block");
+                        
+                    }
+                    else {
+                        console.error("Unknown problem with server");
+                    }
+                },
+                error: function (err) {
+                    console.error("Unknown problem with server");
+                }
+            })
+        })
+</script>

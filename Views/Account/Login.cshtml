@@ -1,0 +1,26 @@
+﻿@model LoginView
+@{ 
+    Layout = "../Shared/_Layout.cshtml";
+    
+}
+<h2>Zaloguj</h2>
+<div class="login">
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        if (ViewData["error"] != null)
+        {
+            <div class="login-message">
+                @ViewData["error"]
+            </div>
+        }
+        <div class="login-input"><label>Login :</label>@Html.EditorFor(x => x.Login)</div>
+        <div class="login-input"><label>Hasło :</label>@Html.EditorFor(x => x.Password)</div>
+        <div class="login-input"><label>Zapamiętaj :</label>@Html.EditorFor(x => x.Remember)</div>
+        <div class="login-new">Nie masz konta? @Html.ActionLink("Dołącz do PolkuForum","NewAccount","Account")</div>
+        <input type="submit" value="Zaloguj" />
+        <div class="login-validate">
+            @Html.ValidationSummary()
+        </div>
+    }
+</div>

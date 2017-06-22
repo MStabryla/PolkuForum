@@ -1,0 +1,24 @@
+﻿@model Days
+
+@using (Html.BeginForm("SetToday","Main",FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+    <div class="day-set-title">
+        <label>Tytuł :</label>
+        @Html.EditorFor(x => x.Title)
+    </div>
+    <div class="day-set-desc">
+        <label>Opis :</label>
+        @Html.TextAreaFor(x => x.Description,new { rows="3" })
+    </div>
+    <div class="day-set-image">
+        <input type="file" name="SetToday" accept="image/*" id="Day-File"/>
+        <input type="hidden" name="image" id="Day-Image-Content"/>
+    </div>
+    <input type="submit" value="Zatwierdź"/>
+    <script>
+        document.getElementById("Day-File").onchange = function () {
+            document.getElementById("Day-Image-Content").setAttribute("value", this.value.replace("C:\\fakepath\\",""));
+        }
+    </script>
+}

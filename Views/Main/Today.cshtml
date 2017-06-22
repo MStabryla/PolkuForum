@@ -1,0 +1,60 @@
+﻿@model Days
+
+<h2>TEMAT DNIA</h2>
+<div class="day">
+    <div class="day-panel">
+        <div class="day-title">@Model.Title</div>
+        <div class="day-desc">@Model.Description</div>
+    </div>
+    <div class="day-img">
+        <img src="@Model.Image" alt="err"/>
+    </div>
+    
+</div>
+@if (User.IsInRole("Admin"))
+{
+    <span id="Day-Change" style="position:absolute;top:100%;right:0;font-size:10px;">Zmień dane</span>
+    <div class="day-set" id="Day-Set"></div>
+}
+@*<div class="alert" id="Day-Alert">
+    <span class="alert-close" id="Day-Close">X</span>
+    <div class="alert-content" id="Day-Set"></div>
+</div>*@
+<script>
+    var changed = false;
+    $("#Day-Change").click(function () {
+        if (changed)
+        {
+            $("#Day-Set").fadeOut(1000, function () {
+                $(this).css("display", "none");
+            });
+            changed = false;
+            return false;
+        }
+        $("#Day-Set").fadeIn(1000, function () {
+            $(this).css("display", "block");
+        });
+        changed = true;
+        /*.on("click", function () {
+            $("#Day-Alert").css("display","none")
+        })*/
+        /*document.getElementById("Day-Alert").onclick = function () {
+            console.log("tester");
+        }*/
+        /*$("#Day-Set").empty()
+        .on("click", function () {
+            return false;
+        })*/
+        $.ajax({
+            method: "GET",
+            url: "@Url.Action("SetToday","Main")",
+            success: function (resp) {
+                $("#Day-Set").html(resp);
+                $("#Day-Set form input[type=submit]").get(0).onclick =  function () {
+                    console.log(this, "test");
+                    $("#Day-Set form").get(0).submit();
+                }
+            }
+        })
+    })
+</script>

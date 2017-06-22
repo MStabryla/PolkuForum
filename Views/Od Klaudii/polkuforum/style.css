@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#con{
+    max-width: 100%;
+    min-height: 100%;
+}
+header{
+    background: rgb(66,136,208);
+    height: 15%;
+    width: 100%;
+    position: relative;
+    color: #FFF;
+    display: inline-flex;
+    align-items: center;
+}
+h1{
+    font-size: 70px;
+    left: 110.15px;
+}
+b{
+    color: rgb(65,52,46);
+}
+img, nav{
+    display: inline;
+}
+header img{
+    height: 100%;
+}
+nav{
+    position: absolute;
+    bottom: 15%;
+    right: 3%;
+}
+ul{
+   list-style-type: none;
+}
+nav li{
+    display: inline;
+}
+nav a{
+    display: inline-block;
+    text-decoration: none;
+    color: #FFF;
+    padding-left: 30px;
+}
+#main{
+    display: inline-flex;
+}
+#main a{
+    text-decoration: none;
+    color: #FFF;
+}
+#left{
+    align-items: center;
+}
+#account{
+    width: 50%;
+    margin: 5%;
+}
+#user-data{
+    text-align: center;
+}
+#left, #right{
+    width: 20%;
+    background: rgb(57,57,57);
+    color: #FFF;
+}
+#mid{
+    width: 60%;
+}
+footer{
+    background: rgb(66,136,208);
+    height: 20%;
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    color: #FFF;
+    justify-content: center;
+    align-items: center;
+}
+footer > img{
+    height: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+footer div{
+    text-align: center;
+    margin: 4%;
+}
+footer p{
+    font-size: 25px;
+    margin-bottom: 6%;
+}
+footer a{
+    text-decoration: none;
+    color: #FFF;
+}

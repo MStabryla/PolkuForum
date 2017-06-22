@@ -1,0 +1,35 @@
+﻿@model ForumUser
+@{ 
+    
+}
+<div class="user">
+    <div class="user-image"><img src="@Model.Profile.Obraz" alt="err"/></div>
+    <div class="user-data">
+        <span class="user-name">@Model.Nick</span>
+        @switch(Model.Role)
+        {
+            case "Admin":
+                <div class="user-role" style="color:#4288d0">ADMINISTRATOR</div>
+                break;
+            case "Artist":
+                <div class="user-role" style="color:#4288d0">SATYRYK</div>
+                break;
+            case "Mode":
+                <div class="user-role" style="color:#4288d0">MODERATOR</div>
+                break;
+            case "User":
+                <div class="user-role" style="color:#4288d0">UŻYTKOWNIK</div>
+                break;
+        }
+    </div>
+    <div class="user-menu">
+        <span class="user-my-acc"><a href="@Url.Action("GetUser","Account", new { name = Model.UserName })">Moje Konto</a>
+        </span><span class="user-my-source"><a href="@Url.Action("MySources","Article")">Źródła</a>
+        </span><span class="user-my-diss"><a href="@Url.Action("MyFauvorite","Discussion")">Dyskusje</a>
+        </span><span class="user-my-perfo"><a href="@Url.Action("MyFauvorite","Account")">Artyści</a></span>
+    </div>
+    <form method="POST" action="/konto/wyloguj">
+        <input type="submit" value="wyloguj"/>
+    </form>
+</div>
+

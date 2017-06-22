@@ -1,0 +1,127 @@
+﻿@{
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="author" content="Mateusz Stabryła" />
+    <title>@ViewBag.Title - PolkuForum</title>
+    <link rel="stylesheet" type="text/css" href="~/css/Zero.css" />
+    <link rel="Stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/grid.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="~/css/media.css"/>
+    <link rel="stylesheet" type="text/css" href="~/css/account.css"/>
+    <link rel="stylesheet" type="text/css" href="~/css/main.css"/>
+    <link rel="icon" type="image/x-icon" href="~/grf/minilogo.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    @*<script src="https://code.jquery.com/jquery-3.1.1.js"></script>*@
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="~/grf/minilogo.png" />
+            <a href="@Url.Action("Index", "Main")"><h1>Polku <span style="color:rgb(65,52,46);font-weight:600;">Forum</span></h1></a>
+        </div>
+        <nav>
+            <ul class="header-menu">
+                <li><a class="header-a" href="@Url.Action("Latest", "Discussion")">Dyskusje</a></li>
+                <li><a class="header-a" href="@Url.Action("Latest", "Article")">Artykuły</a></li>
+                <li><a class="header-a" href="@Url.Action("Latest", "Satire")">Satyra</a></li>
+                <li><a class="header-a" href="@Url.Action("Login", "Account")">Konto</a></li>
+                <li><a class="header-a" href="@Url.Action("Contact", "Contact")">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="main" class="container-24">
+        <div class="left-panel">
+            <div id="User" class="panel-fragment">@{ Html.RenderAction("PartialLogin", "Account", null); }</div>
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    <div id="recomm" class="panel-fragment">
+                        @{ Html.RenderAction("Recommended", "Main");}
+                    </div>
+                }
+            }
+        </div><div class="main-panel">
+            @RenderBody()
+        </div><div class="right-panel">
+            <div id="today" class="panel-fragment">
+                @{ Html.RenderAction("Today","Main");}
+            </div>
+            <div id="Popular" class="panel-fragment">
+                @{ Html.RenderAction("Popular","Main");}
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-m" id="f-humor">
+            <h3>
+                Satyra
+            </h3>
+            <ul id="left">
+                <li>@Html.ActionLink("Film", "Films", "Satire")</li>
+                <li>@Html.ActionLink("Wiersz", "Poems", "Satire")</li>
+                <li>@Html.ActionLink("Obraz", "Pictures", "Satire")</li>
+            </ul>
+        </div>
+        <div class="footer-m" id="f-article">
+            <h3>
+                Artykuły
+            </h3>
+            <ul id="med">
+                <li>@Html.ActionLink("Najnowsze", "Latest", "Article")</li>
+                <li>@Html.ActionLink("Popularne", "MostActive", "Article")</li>
+                <li>@Html.ActionLink("Zródła", "Sources", "Article")</li>
+            </ul>
+        </div>
+        <div class="footer-m" id="f-discus">
+            <h3>
+                Dyskusje
+            </h3>
+            <ul id="right">
+                <li>@Html.ActionLink("Najnowsze","Latest","Discussion")</li>
+                <li>@Html.ActionLink("Popularne","MostActive", "Discussion")</li>
+                <li>@Html.ActionLink("Kategorie", "Category", "Discussion")</li>
+            </ul>
+        </div>
+        <div class="footer-o">
+            <ul>
+                <li><a href="@Url.Action("Latest","Discussion")">Dyskusje</a></li>
+                <li><a href="@Url.Action("Latest","Article")">Artykuły</a></li>
+                <li><a href="@Url.Action("Latest","Satire")">Satyra</a></li>
+                <li><a href="@Url.Action("Login","Account")">Konto</a></li>
+                <li><a href="@Url.Action("Contact","Contact")">Kontakt</a></li>
+                <li><a href="@Url.Action("MyAccount","Account")">Zarządzaj</a></li>
+            </ul>
+        </div>
+        <img src="~/grf/logo.png" width="200" height="200" />
+    </footer>
+    <script>
+        $(document).ready(function () {
+            if (window.location.href != "http://localhost:50142") {
+                var images = $("img");
+                console.log(link);
+                for (var i = 0; i < images.length;i++)
+                {
+                    var link = images[i].getAttribute("src");
+                    if(link[0] != "/")
+                        images[i].setAttribute("src", "/" + link);
+                }
+            }
+            /*var user = document.getElementById("User");
+            RenderPartial(user, "/Account/PartialLogin");
+            var pop = document.getElementById("Popular");
+            RenderPartial(pop, "/Main/Popular");*/
+        })
+    </script>
+</body>
+</html>

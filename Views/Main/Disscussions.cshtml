@@ -1,0 +1,19 @@
+﻿@model List<Discussion>
+
+<!--PartialView Discussions-->
+
+<h2>Dyskusje</h2>
+
+@if (Model != null)
+{
+    foreach (Discussion dis in Model)
+    {
+        <a href="@Url.Action("Discussion","Discussion",new PolkuForum.Models.RouteObject { Id=dis.Id.ToString()})" class="link-a">
+            <div class="link-main">
+                <span class="link-main-title">@dis.Title</span>
+                <img src="@dis.Image"/>
+            </div>
+        </a>
+    }
+}
+

@@ -1,0 +1,24 @@
+﻿@model List<dynamic>
+
+<!--PartialView MostPopular-->
+<h2>
+    POPULARNE
+</h2>
+@if (Model.Count > 0)
+{
+    string mainkind = Convert.ToString(Model[0].ObjectName);
+
+    <a href="@Url.Action(mainkind,mainkind,new PolkuForum.Models.RouteObject { Id=Model[0].Id.ToString()})" class="main-link-a">
+        <div class="link-main" style="background-image:url(@Model[0].Image)">
+            <span class="link-main-title">@Model[0].Title</span>
+        </div>
+    </a>
+    for (int i = 1; i < Model.Count; i++)
+    {
+        <a href="@Url.Action(mainkind,mainkind,new PolkuForum.Models.RouteObject { Id=Model[i].Id.ToString()})">
+            <div class="link-main">
+                <span>@Model[i].Title</span>
+            </div>
+        </a>
+    }
+}

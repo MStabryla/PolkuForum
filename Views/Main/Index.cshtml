@@ -1,0 +1,10 @@
+﻿@{ 
+    Layout = "../Shared/_Layout.cshtml";
+}
+<section class="main-index-section">@{Html.RenderAction("MostPopular");}</section>
+
+<section class="index-section">@{Html.RenderAction("Disscussions");}</section>
+
+<section class="index-section">@{Html.RenderAction("Articles");}</section>
+
+<section class="index-section">@{Html.RenderAction("Satires");}</section>

@@ -1,0 +1,76 @@
+﻿@model Discussion
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string DateString = Model.Date.Year + "-" + Model.Date.Month + "-" + Model.Date.Day;
+    double supportingVoices = ((double)Model.Comments.Where(x => x.Kind).Count() / (double)Model.Comments.Count) * 100;
+    double opposedVoices = ((double)Model.Comments.Where(x => x.Kind == false).Count() / (double)Model.Comments.Count) * 100;
+}
+
+
+
+<div class="dis">
+    <h2>@Model.Title</h2>
+    <div class="dis-title-underline">
+        <div class="dis-date">@Model.Date.ToShortDateString()</div>
+        <div class="dis-author"><a href="@Url.Action("GetUser","Account", new { name = Model.Author.UserName })">@Model.Author.Nick</a></div>
+        <div class="dis-cat">@Model.Category.Name</div>
+    </div>
+    <h3>Opis :</h3>
+    <div class="dis-desc">@Model.Decription</div>
+    <h3>Wynik :</h3>
+    <div class="dis-result">
+        <div class="dis-axis">
+            <div class="dis-axis-yes" style="width:@supportingVoices%"></div>
+            <div class="dis-axis-no" style="width:@opposedVoices%"></div>
+        </div>
+        <div class="dis-supp">
+            ZA <span class="dis-supp-per">@supportingVoices%</span>
+        </div>
+        <div class="dis-oppo">
+            PRZECIW <span class="dis-oppo-per">@opposedVoices%</span>
+        </div>
+    </div>
+    <h3>Komentarze: </h3>
+    @foreach (ComD comment in Model.Comments.Take(10))
+    {
+        <div class="dis-com">
+            <div class="dis-com-author"><a href="@Url.Action("GetUser","Account", new { name = comment.Author.UserName })">@comment.Author.Nick</a></div>
+            <div class="dis-com-date">@comment.Date.ToShortDateString()</div>
+            @if (comment.Kind)
+            {
+                <div class="dis-com-supp">TAK</div>
+            }
+            else
+            {
+                <div class="dis-com-oppo">NIE</div>
+            }
+            <div class="dis-com-content">@comment.Content</div>
+        </div>
+    }
+    <div class="dis-add-com">
+        @{ 
+            if (User.Identity.IsAuthenticated)
+            {
+                Html.RenderAction("AddComment", "Discussion");
+            }
+            else
+            {
+                <span class="dis-add-com-mess">Aby dodać komentarz, musisz się zalogować</span>
+                <span>@Html.ActionLink("Zaloguj","Login","Account")</span>
+            }
+        }
+    </div>
+    <script>
+        @*$.ajax({
+            method: "GET",
+            url:"@Url.Action("AddComment","Discussion",new { id=Model.Id})",
+            success:function(data){
+                $(".dis-add-com").get(0).innerHTML = data;
+            },
+            error:function(err){
+                $(".dis-add-com").get(0).innerHTML = "Musisz być zalogowany";
+            }
+        })*@
+    </script>
+</div>

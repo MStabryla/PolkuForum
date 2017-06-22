@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'Libel Suit';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/css/libelsuit.woff') format('woff');
+}
+body
+{
+    font-family: 'Slabo 27px';
+}
+.container-24
+{
+    margin:0;
+    width:100%;
+    height:100%;
+    min-height: 1008px;
+    position: relative;
+}
+.container-24,header,footer{
+    min-width:1265px;
+}
+.main-panel,.left-panel,.right-panel
+{
+    margin:0;
+    height:auto;
+    min-height: 1000px;
+    display: block;
+    float:left;
+    padding: 7px;
+    position: relative;
+    overflow:hidden;
+}
+.left-panel, .right-panel {
+    width: calc(18% - 14px);
+    min-width: 200px;
+    padding: 5px 25px;
+    background-color: #3c3c3b;
+    color: white;
+    height:100%;
+    position:absolute;
+}
+.main-panel {
+    width: calc(58% - 14px);
+    min-width: 455px;
+    margin:0 calc(22% - 14px);
+}
+.container-24:after{
+    clear:both;
+    content:' ';
+    display:block;
+}
+.left-panel {
+    left:0;
+}
+
+.right-panel {
+    right:0;
+}
+.panel-fragment {
+    min-height: 100px;
+    height:auto;
+    width: 100%;
+    display: inline-block;
+    position:relative;
+    margin:15px auto;
+}
+.panel-fragment * {
+    display: block;
+}
+.day {
+    width: 100%;
+    clear: both;
+    height: 130px;
+}
+.day-panel{
+    width:calc(50% - 4px);
+    display:inline-block;
+}
+.day-title{
+    text-align:center;
+    width:100%;
+    font-weight:bold;
+    float:none;
+    height:20%;
+    min-height:25px;
+    font-size:20px;
+}
+.day-desc {
+    width: 100%;
+    font-size: 13px;
+    clear: both;
+    float: none;
+    height: 80%;
+    min-height: 25px;
+    padding:5px;
+}
+.day-img,.day-panel{
+    display:inline-block;
+    min-height:120px;
+    position:relative;
+}
+.day-img{
+    width:calc(50% - 2px);
+    display:block;
+    float:right;
+    position:relative;
+}
+.day-img img{
+    width:120px;
+    height:120px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+.panel-fragment h2 {
+    width: 100%;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Lucida Sans';
+    margin-bottom:8px;
+}

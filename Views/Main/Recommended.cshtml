@@ -1,0 +1,17 @@
+﻿@model List<dynamic>
+
+<!--PartialView Recommended-->
+<h2>POLECANE DLA CIEBIE</h2>
+@if(Model != null && Model.Count >= 3)
+{
+    <div class="rec-element">
+        <span class="rec-element-type">DYSKUSJA</span>
+        <div class="rec-element-image">
+            <img src="@Model[0].Image" alr="err"/>
+        </div>
+        <div class="rec-element-info">
+            <span class="rec-element-title">@Model[0].Title</span>
+            <span class="rec-element-desc">@Model[0].Description</span>
+        </div>
+    </div>
+}

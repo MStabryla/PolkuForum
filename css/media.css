@@ -1,0 +1,45 @@
+﻿@media screen and (max-width:1270px)
+{
+    footer, header, .container-24 {
+        min-width: 1100px;
+    }
+    .footer-m{
+        margin:0 10px;
+    }
+    #f-humor{
+        margin-left:0;
+    }
+    .main-panel{
+        margin:0 290px;
+        width:calc(100% - 600px);
+    }
+    .left-panel,.right-panel{
+        width:220px;
+    }
+    .index-section a {
+        width: 164px;
+        height: 147px;
+    }
+}/*
+@media (max-width:870px){
+    /*footer, header, .container-24 {
+        min-width: 840px;
+    }
+    .footer-m{
+        display:block;
+        height:30%;
+        margin:5px;
+        width:100%;
+        
+    }
+    .footer-m h3 {
+        text-align: left;
+        font-size: 26px;
+    }
+    .footer-m ul{
+        display:none;
+    }
+    .footer-o{
+        display:block;
+    }
+}*/

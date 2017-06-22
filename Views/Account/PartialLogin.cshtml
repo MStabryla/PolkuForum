@@ -1,0 +1,17 @@
+﻿@model LoginView
+
+<!--PartialView PartialLogin-->
+<h2>Zaloguj</h2>
+<div class="login-part">
+    @using (Html.BeginForm("PostPartialLogin","Account",FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="login-part-input"><label>Login :</label>@Html.EditorFor(x => x.Login)</div>
+        <div class="login-part-input"><label>Hasło :</label>@Html.EditorFor(x => x.Password)</div>
+        <div class="login-part-input"><label>Zapamiętaj :</label>@Html.EditorFor(x => x.Remember)</div>
+        <input type="submit" value="Zaloguj"/>
+        <div class="login-part-validate">
+            @Html.ValidationSummary()
+        </div>
+    }
+</div>

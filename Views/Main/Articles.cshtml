@@ -1,0 +1,15 @@
+﻿@model List<Article>
+
+<!--PartialView Article-->
+<h2>Artykuły</h2>
+@if (Model != null)
+{
+    foreach (Article dis in Model)
+    {
+        <a href="@Url.Action("Article", "Article", new PolkuForum.Models.RouteObject { Id = dis.Id.ToString() })" class="link-a">
+            <div class="link-main" style="background-image:url(@dis.Image">
+                <span class="link-main-title">@dis.Title</span>
+            </div>
+        </a>
+    }
+}

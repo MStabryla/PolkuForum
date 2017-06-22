@@ -1,0 +1,42 @@
+﻿.main-link-a{
+    width:40%!important;
+}
+.main-index-section a {
+    width: 29%;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+}
+.index-section a,.main-index-section a{
+    background-color:grey;
+}
+.index-section a {
+    width: 237px;
+    height: 147px;
+    position: relative;
+    display: inline-block;
+}
+.link-main{
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+.link-main span{
+    color:white;
+    font-size:15px;
+    text-align:left;
+    display:inline-block;
+    position:absolute;
+    bottom:5px;
+    width:90%;
+    left:50%;
+    transform:translateX(-50%);
+}
+.link-main img{
+    z-index:-1;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}

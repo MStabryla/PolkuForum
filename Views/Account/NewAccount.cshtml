@@ -1,0 +1,149 @@
+﻿@model CreateUser
+@{
+    ViewBag.Title = "NewAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Stwórz użytkownika</h2>
+@using (Html.BeginForm("NewAccount", "Account", FormMethod.Post, new { id = "CreateAccount", @class = "registry" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="registry-data">
+        <div class="registry-input">
+            @Html.LabelFor(x => x.Login)
+            @Html.EditorFor(x => x.Login)
+        </div>
+        <div class="registry-input">
+            @Html.LabelFor(x => x.Password)
+            @Html.PasswordFor(x => x.Password)
+        </div>
+        <div class="registry-input">
+            @Html.LabelFor(x => x.ConfirmPassword)
+            @Html.PasswordFor(x => x.ConfirmPassword)
+        </div>
+        <div class="registry-input">
+            @Html.LabelFor(x => x.Email)
+            @Html.EditorFor(x => x.Email)
+        </div>
+    </section>
+    <section class="registry-about">
+        <div class="registry-info">
+            <div class="registry-input">
+                @Html.LabelFor(x => x.Nick)
+                @Html.EditorFor(x => x.Nick)
+            </div>
+            <div class="registry-input">
+                @Html.LabelFor(x => x.Education)
+                @Html.EditorFor(x => x.Education)
+            </div>
+            <div class="registry-input">
+                @Html.LabelFor(x => x.Description)
+                @Html.TextAreaFor(x => x.Description)
+            </div>
+        </div>
+        <div class="registry-image">
+            <img src="" alt="" id="Image-Preview" />
+            <input type="file" accept="image/*" name="Image-File" />
+            <label for="Image-File">Wybierz zdjęcie</label>
+            <input type="hidden" name="Image" />
+        </div>
+    </section>
+    <input type="submit" value="Zarejestruj"/>
+    @Html.ValidationSummary()
+}
+    <script>
+        document.querySelector("#CreateAccount input[name='Image-File']").onchange = function () {
+            var hiddenelem = document.querySelector("#CreateAccount input[name='Image']");
+            hiddenelem.setAttribute("value", "grf/" + this.value.replace("C:\\fakepath\\", ""));
+            var formfile = new FormData();
+            formfile.append("file", this.files[0])
+            formfile.append("filename", hiddenelem.value);
+            $.ajax({
+                url: "@Url.Action("SendImage", "Account")",
+                data: formfile,
+                method: "POST",
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.success) {
+                        $("#Image-Preview").attr("src", data.path)
+                            .on("load", function () {
+                                var mainelem = $(".registry-image")[0];
+                                var propotion = this.naturalHeight / this.naturalWidth;
+                                var hei = (mainelem.clientWidth * propotion);
+                                console.log(propotion, mainelem.clientHeight,hei);
+                                if (hei > 300) {
+                                    propotion = this.naturalWidth / this.naturalHeight;
+                                    var actwidth = 300 * propotion;
+                                    console.log(propotion, mainelem.clientWidth, actwidth);
+                                    mainelem.style.height = 300 + "px";
+                                    this.style.height = 300 + "px"
+                                    this.style.width = actwidth + "px";
+                                }
+                                else
+                                {
+                                    this.style.height = "100%";
+                                    this.style.width = "100%";
+                                    mainelem.style.height = hei + "px";
+                                }
+                                
+                        });
+                    }
+                    console.log(data);
+                },
+                error: function (err) {
+                    console.error(err);
+                }
+            })
+        }
+        $("#Education").on("keydown", function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                var elem = $("<div>");
+                elem.attr("class", "registry-education");
+                elem.attr("value", this.value);
+                var span = $("<span>");
+                span.text(this.value);
+                elem.append(span);
+                var butt = $("<button>");
+                butt.attr("type", "button");
+                butt.text("-");
+                butt.on("click", function () {
+                    $(this.parentElement).remove();
+                })
+                elem.append(butt);
+                $(this.parentElement).append(elem);
+                this.value = "";
+            }
+        })
+        $("#CreateAccount input[type='submit']").on("click", function (e) {
+            e.preventDefault();
+            var education = "";
+            $.each($(".registry-education"), function (i, elem) {
+                education += $(elem).attr("value");
+                if (elem != $(".registry-education")[$(".registry-education").length - 1]) {
+                    education += "|";
+                }
+            });
+            $("#Education")[0].value = education;
+            var data = $("#CreateAccount").serialize();
+            $("#Education")[0].value = "";
+            $.ajax({
+                url:"@Url.Action("NewAccount","Account")",
+                data:data,
+                method: "POST",
+                success: function (data) {
+                    if (data.completed)
+                    {
+                        window.location.replace(data.link);
+                    }
+                    else {
+                        alert(data.error);
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            })
+        })
+    </script>
+

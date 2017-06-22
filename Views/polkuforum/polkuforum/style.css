@@ -1,0 +1,272 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#con{
+    max-width: 100%;
+    min-height: 100%;
+}
+header{
+    background: rgb(66,136,208);
+    max-height: 150px;
+    min-height: 100px;
+    height: 60%;
+    width: 100%;
+    position: relative;
+    color: #FFF;
+    display: inline-flex;
+    align-items: center;
+
+}
+header img{
+  max-height: 150px;
+  min-height: 100px;
+  height: 100%;
+}
+h1{
+    font-size: 70px;
+    left: 110.15px;
+}
+b{
+    color: rgb(65,52,46);
+}
+img, nav{
+    display: inline;
+}
+header img{
+    height: 100%;
+}
+nav{
+    position: absolute;
+    bottom: 15%;
+    right: 3%;
+}
+ul{
+   list-style-type: none;
+}
+nav li{
+    display: inline;
+}
+nav a{
+    display: inline-block;
+    text-decoration: none;
+    color: #FFF;
+    padding-left: 30px;
+}
+#main{
+    margin-top: -5px;
+    margin-bottom: -30px;
+}
+#main:after{
+    display: block;
+    clear:both;
+    content:' ';
+}
+#main a{
+    text-decoration: none;
+    color: #FFF;
+}
+#account{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 5%;
+    align-content: center;
+}
+#account #profile{
+    width: 120px;
+    height: 120px;
+    background: #AAA;
+    margin: 0 auto;
+}
+#account p:first-child{
+  font-size: 23px;
+}
+#ua{
+  min-height: 50px;
+  max-width: 200px;
+  margin: 0 auto;
+}
+#account .left{
+  display: block;
+  text-align: left;
+  width: 49%;
+  float: left;
+}
+#account .left a{
+  display: block;
+  Width: 100%;
+}
+#account .right a{
+  display: block;
+  Width: 100%;
+}
+#account .right{
+  text-align: right;
+  width: 49%;
+  float: left;
+}
+#user-data{
+    text-align: center;
+    padding: 2%;
+    justify-content: space-between;
+}
+#account button{
+    background: rgb(66,136,208);
+    color: #FFF;
+    min-height: 23px;
+    height: 12%;
+    width: 40%;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    margin-left: 30%;
+}
+#recom, #tod{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+#recom a{
+    color: rgb(66,136,208);
+}
+#recom div:first-child{
+  margin-bottom: 5%;
+}
+.recom-con, #tod{
+    height: 100px;
+    border: 1px solid #AAA;
+    margin: 2%;
+    border-radius: 5px;
+    padding: 5%;
+    position: relative;
+}
+.recom-con a{
+    position: absolute;
+    left: 15%;
+}
+#tod{
+  border: 1px solid rgb(66,136,208);
+}
+#img{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background: #AAA;
+    bottom: 20%;
+    left: 10%;
+}
+#txt{
+    position: absolute;
+    right: 2%;
+    width: 50px;
+}
+#tod a{
+  color: rgb(66,136,208);
+}
+.txt{
+  position: absolute;
+  font-size: 12px;
+  width: 60%;
+  right: 5%;
+  bottom: 18%;
+  text-align: justify;
+  margin: 2px;
+}
+.txt p:first-child{
+  text-align: center;
+  font-size: 15px;
+}
+#left, #right{
+    background: rgba(57,57,57,0.95);
+    color: #FFF;
+    padding: 15px;
+}
+#right{
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 20%;
+}
+#left{
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 20%;
+  min-height: 1000px;
+}
+#mid{
+    width: 60%;
+}
+#tod{
+  height: 100px;
+  width: 70%;
+  margin: 0 auto;
+  padding: 3%;
+}
+#tod a{
+  position: absolute;
+  left: 15%;
+}
+#tod p:nth-child(2){
+  text-align: justify;
+}
+#tod .txt{
+  position: absolute;
+  font-size: 12px;
+  width: 60%;
+  right: 5%;
+  bottom: 18%;
+  text-align: justify;
+  margin: 2px;
+}
+#pop{
+  width: 70%;
+  border: 1px solid rgb(66,136,208);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 2% auto;
+}
+#pop a{
+  color: rgb(66,136,208);
+}
+.img{
+  width: 30px;
+  height: 30px;
+  background: #AAA;
+  display: inline-block;
+  margin: 1px;
+}
+.pop-con{
+  width: 49%;
+  margin: 2% auto;
+}
+footer{
+    background: rgb(66,136,208);
+    height: 20%;
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    color: #FFF;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50%;
+    bottom: 0;
+
+}
+footer > img{
+    height: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+footer div{
+    text-align: center;
+    margin: 4%;
+}
+footer p{
+    font-size: 25px;
+    margin-bottom: 6%;
+}
+footer a{
+    text-decoration: none;
+    color: #FFF;
+}

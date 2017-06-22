@@ -1,0 +1,20 @@
+﻿@model List<Discussion>
+@{
+    ViewBag.Title = "Latest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Dyskusje</h2>
+
+@foreach(Discussion dis in Model)
+{
+    <div class="list-elem">
+        <div class="list-elem-image"><img src="@dis.Image" alt="err"/></div>
+        <div class="list-elem-header">
+            <div class="list-elem-author"><a href="@Url.Action("GetUser","Account", new { name = dis.Author.UserName })">@dis.Author.Nick</a></div>
+            <div class="list-elem-title"><a href="@Url.Action("Discussion","Discussion",new PolkuForum.Models.RouteObject { Id = dis.Id.ToString() })">@dis.Title</a></div>
+            <div class="list-elem-date">@dis.Date</div>
+            <div class="list-elem-category">@dis.Category.Name</div>
+        </div>
+        <div class="list-elem-desc">@dis.Decription</div>
+    </div>
+}

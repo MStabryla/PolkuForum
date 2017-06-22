@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'Libel Suit';
+    font-style: normal;
+    font-weight: normal;
+    src: url('libelsuit.woff') format('woff');
+}
+body
+{
+    font-family: 'Lucida Sans Unicode';
+}
+.container-24
+{
+    margin:10px 3%;
+    width:94%;
+    height:100%;
+    min-height: 1008px;
+    min-width: 1040px;
+    position: relative;
+    overflow:hidden;
+}
+.main-panel,.left-panel,.right-panel
+{
+    margin:0 5px;
+    height:auto;
+    min-height: 1000px;
+    display: block;
+    float:left;
+    background-color: red;
+    padding: 7px;
+    position: relative;
+}
+.left-panel div
+{
+    height:100px!important;
+    width:100px;
+    display: inline-flex;
+}
+.left-panel,.right-panel
+{
+    width:calc(23% - 14px);
+    min-width:222px;
+}
+.main-panel
+{
+    width:calc(51% - 14px);
+    min-width:455px;
+}
