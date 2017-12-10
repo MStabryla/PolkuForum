@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -324,6 +325,10 @@
     <Compile Include="Migrations\201703072319126_DropRelation1.Designer.cs">
       <DependentUpon>201703072319126_DropRelation1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710081450050_ChangeTableNames.cs" />
+    <Compile Include="Migrations\201710081450050_ChangeTableNames.Designer.cs">
+      <DependentUpon>201710081450050_ChangeTableNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Analyse\Clients.cs" />
     <Compile Include="Models\Analyse\SourceFinder.cs" />
@@ -452,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703072319126_DropRelation1.resx">
       <DependentUpon>201703072319126_DropRelation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710081450050_ChangeTableNames.resx">
+      <DependentUpon>201710081450050_ChangeTableNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

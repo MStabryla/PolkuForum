@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.DataProtection;
@@ -39,13 +35,13 @@ namespace PolkuForum.Models
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            var dataProtectionProvider = Startup.DataProtectionProvider;
+            /*var dataProtectionProvider = Startup.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
                 IDataProtector dataProtector = dataProtectionProvider.Create("ASP.NET Identity");
                 this.UserTokenProvider =
                     new DataProtectorTokenProvider<ForumUser>(dataProtector);
-            }
+            }*/
         }
     }
     public class PolkuForumSignInManager : SignInManager<ForumUser,string>
